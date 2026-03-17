@@ -573,6 +573,185 @@
   .interpretation p + p { margin-top: 8px; }
   .interpretation strong { color: #fff; }
 
+  /* ── Threshold phrase under each metric value ── */
+  .cm-threshold {
+    font-size: .74rem;
+    color: #666;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(0,0,0,.07);
+    text-align: center;
+  }
+
+  /* ── Framework Conflict Diagnosis ── */
+  .conflict-diagnosis {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 4px;
+    border: 1px solid var(--prf-border);
+  }
+
+  .conflict-diagnosis.conflict-authority  { background: #fff5f0; border-color: var(--prf-warn); }
+  .conflict-diagnosis.conflict-value      { background: #fff8f0; border-color: var(--prf-gold); }
+  .conflict-diagnosis.conflict-alignment  { background: #f0faf4; border-color: var(--prf-success); }
+  .conflict-diagnosis.conflict-tension    { background: #f4f0fa; border-color: #8a70b5; }
+  .conflict-diagnosis.conflict-temporal   { background: #f0f6fa; border-color: var(--prf-sky); }
+
+  .conflict-diagnosis-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+
+  .conflict-diagnosis-label {
+    font-family: 'Courier New', monospace; font-size: .68rem;
+    text-transform: uppercase; letter-spacing: .12em; color: var(--prf-muted);
+  }
+
+  .conflict-diagnosis-pattern {
+    font-size: .98rem; font-weight: bold; color: var(--prf-navy);
+  }
+
+  .conflict-authority .conflict-diagnosis-pattern  { color: var(--prf-warn); }
+  .conflict-value     .conflict-diagnosis-pattern  { color: #8a6a20; }
+  .conflict-alignment .conflict-diagnosis-pattern  { color: var(--prf-success); }
+  .conflict-tension   .conflict-diagnosis-pattern  { color: #5a409a; }
+  .conflict-temporal  .conflict-diagnosis-pattern  { color: var(--prf-sky); }
+
+  .conflict-diagnosis-desc {
+    font-size: .88rem; line-height: 1.65; color: #444;
+  }
+
+  .conflict-prediction-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 12px;
+  }
+
+  .conflict-prediction {
+    background: rgba(255,255,255,.7); border-radius: 6px;
+    padding: 9px 12px; font-size: .82rem;
+  }
+
+  .conflict-prediction .pred-label {
+    font-family: 'Courier New', monospace; font-size: .64rem;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--prf-muted); margin-bottom: 3px;
+  }
+
+  .conflict-prediction .pred-text { color: var(--prf-ink); line-height: 1.4; }
+
+  /* ── Per-framework suppression gap (compact variant) ── */
+  .fw-suppression-row {
+    display: flex; gap: 12px; margin-top: 14px;
+  }
+
+  .fw-gap-card {
+    flex: 1; border-radius: 8px; padding: 12px 14px;
+    border: 2px solid;
+  }
+
+  .fw-gap-card.gap-low  { background: #f0faf4; border-color: var(--prf-success); }
+  .fw-gap-card.gap-mid  { background: #fdf8ee; border-color: var(--prf-gold); }
+  .fw-gap-card.gap-high { background: #fff5f2; border-color: var(--prf-warn); }
+  .fw-gap-card.gap-crit { background: #fff0f0; border-color: var(--prf-danger); }
+
+  .fw-gap-card-header {
+    display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px;
+  }
+
+  .fw-gap-card-name {
+    font-family: 'Courier New', monospace; font-size: .7rem;
+    text-transform: uppercase; letter-spacing: .08em; color: var(--prf-muted);
+  }
+
+  .fw-gap-number {
+    font-size: 1.4rem; font-weight: bold; line-height: 1;
+  }
+
+  .gap-low  .fw-gap-number { color: var(--prf-success); }
+  .gap-mid  .fw-gap-number { color: var(--prf-gold); }
+  .gap-high .fw-gap-number { color: var(--prf-warn); }
+  .gap-crit .fw-gap-number { color: var(--prf-danger); }
+
+  .fw-gap-title { font-size: .8rem; font-weight: bold; color: var(--prf-navy); margin-bottom: 4px; }
+  .fw-gap-desc  { font-size: .76rem; line-height: 1.5; color: #555; font-style: italic; }
+
+  /* ── Combined reading (compact for worldview app) ── */
+  .fw-combined-reading {
+    border-radius: 8px; padding: 14px 16px;
+    margin-bottom: 0; border: 1px solid var(--prf-border);
+  }
+
+  .fw-combined-reading.state-healthy   { background: #f0faf4; border-color: var(--prf-success); }
+  .fw-combined-reading.state-exhausted { background: #fdf3ee; border-color: var(--prf-warn); }
+  .fw-combined-reading.state-blocked   { background: #fdf8ee; border-color: var(--prf-gold); }
+  .fw-combined-reading.state-breakdown { background: #fff0f0; border-color: var(--prf-danger); }
+  .fw-combined-reading.state-mixed     { background: #f4f7fc; border-color: var(--prf-slate); }
+
+  .fw-combined-label {
+    font-family: 'Courier New', monospace; font-size: .66rem;
+    text-transform: uppercase; letter-spacing: .1em; color: var(--prf-muted); margin-bottom: 4px;
+  }
+
+  .fw-combined-pattern {
+    font-size: .9rem; font-weight: bold; color: var(--prf-navy); margin-bottom: 6px;
+  }
+
+  .state-healthy   .fw-combined-pattern { color: var(--prf-success); }
+  .state-exhausted .fw-combined-pattern { color: var(--prf-warn); }
+  .state-blocked   .fw-combined-pattern { color: #8a6a20; }
+  .state-breakdown .fw-combined-pattern { color: var(--prf-danger); }
+
+  .fw-combined-synthesis { font-size: .84rem; line-height: 1.6; color: #444; }
+  .fw-combined-synthesis strong { color: var(--prf-navy); }
+
+  /* ── Voice narrative (compact for worldview app) ── */
+  .fw-voice-narrative {
+    background: linear-gradient(135deg, #1e2f50 0%, #2a3f6a 100%);
+    border-radius: 8px; padding: 16px 18px; position: relative; overflow: hidden;
+  }
+
+  .fw-voice-narrative::before {
+    content: '"'; position: absolute; top: -8px; left: 8px;
+    font-size: 5rem; color: rgba(255,255,255,.07);
+    font-family: Georgia, serif; line-height: 1; pointer-events: none;
+  }
+
+  .fw-voice-label {
+    font-family: 'Courier New', monospace; font-size: .64rem;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--prf-amber); margin-bottom: 8px;
+  }
+
+  .fw-voice-text {
+    font-size: .88rem; line-height: 1.7;
+    color: rgba(255,255,255,.88); font-style: italic;
+  }
+
+  .fw-voice-attribution {
+    margin-top: 8px; font-size: .68rem;
+    color: rgba(255,255,255,.4); font-family: 'Courier New', monospace;
+  }
+
+  /* ── Per-framework result block ── */
+  .fw-result-block {
+    border: 1px solid var(--prf-border); border-radius: 8px;
+    overflow: hidden; margin-bottom: 16px;
+  }
+
+  .fw-result-block:last-child { margin-bottom: 0; }
+
+  .fw-result-header {
+    padding: 10px 16px; font-size: .88rem; font-weight: bold;
+    color: #fff; display: flex; align-items: center; gap: 8px;
+  }
+
+  .fw-result-header.header-a { background: var(--fw-a); }
+  .fw-result-header.header-b { background: var(--fw-b); color: var(--prf-deep); }
+  .fw-result-header.header-mix { background: var(--fw-mix-light); color: var(--prf-slate); }
+
+  .fw-result-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+
   /* ── Reflection Prompts ── */
   .reflection-box {
     background: var(--prf-warm); border: 1px solid var(--prf-border);
@@ -853,6 +1032,19 @@
       </div>
     </div>
 
+    <!-- Framework Conflict Diagnosis — shown before metrics -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">A½</span>
+        <h2>Structural Conflict Analysis — What to Expect Before You See the Numbers</h2>
+      </div>
+      <div class="card-body">
+        <div id="conflictDiagnosis">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
     <!-- UCP Metric Comparison -->
     <div class="card">
       <div class="card-header">
@@ -879,15 +1071,28 @@
       </div>
     </div>
 
+    <!-- Per-framework deep readings -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">C½</span>
+        <h2>Reading Each System — Suppression, Pattern &amp; Felt Experience</h2>
+      </div>
+      <div class="card-body">
+        <div id="perFwReadings">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
     <!-- Interpretation -->
     <div class="card">
       <div class="card-header">
         <span class="card-num">D</span>
-        <h2>What This Tells Us</h2>
+        <h2>Friction Reading — Coordination Cost Comparison</h2>
       </div>
       <div class="card-body">
         <div class="interpretation" id="interpBox">
-          <div class="int-label">UCP Interpretation</div>
+          <div class="int-label">Friction Reading Only — see Section C½ for suppression and voice</div>
           <p id="interpText">—</p>
         </div>
       </div>
@@ -1134,8 +1339,8 @@
     const runMixed      = document.getElementById('dominance-check').checked;
     const seed          = Math.floor(Math.random() * 9000) + 1000;
 
-    const fwA = FRAMEWORKS[selectedA];
-    const fwB = FRAMEWORKS[selectedB];
+    const fwA = { ...FRAMEWORKS[selectedA], key: selectedA };
+    const fwB = { ...FRAMEWORKS[selectedB], key: selectedB };
     const evDist = buildEvidenceDist(evVal);
     const distA  = buildDominantDist(fwA.engineKey);
     const distB  = buildDominantDist(fwB.engineKey);
@@ -1190,9 +1395,491 @@
   }
 
   // ─────────────────────────────────────────────────
+  // THRESHOLD PHRASE FUNCTIONS — strict ownership
+  //
+  // lambdaRawPhrase   → potential only, never suppression
+  // lambdaPercPhrase  → felt quality of coordinating
+  // frictionPhrase    → energy cost/drag only
+  // ─────────────────────────────────────────────────
+
+  function lambdaRawPhrase(v) {
+    if (v > 0.70) return 'Strong underlying potential — real capacity to coordinate.';
+    if (v > 0.55) return 'Moderate potential — capacity exists but under structural load.';
+    if (v > 0.40) return 'Fragile — near the collapse threshold.';
+    return 'Capacity collapsed — coordination is unreliable.';
+  }
+
+  function lambdaPercPhrase(v) {
+    if (v > 0.70) return 'Feels genuinely collaborative — process is responsive.';
+    if (v > 0.55) return 'Feels effortful — engaged but noticeably strained.';
+    if (v > 0.40) return 'Feels difficult — high personal cost to coordinate.';
+    return 'Feels nearly impossible — system not responding to effort.';
+  }
+
+  function frictionPhrase(v) {
+    if (v < 0.25) return 'Low drag — coordination energy reaches the problem.';
+    if (v < 0.45) return 'Moderate drag — extra effort needed before work begins.';
+    if (v < 0.65) return 'High drag — significant energy consumed by internal resistance.';
+    return 'Severe drag — system consuming itself.';
+  }
+
+  // ─────────────────────────────────────────────────
+  // SUPPRESSION GAP — owns ALL suppression language
+  // Compact variant for side-by-side framework display.
+  // ─────────────────────────────────────────────────
+
+  function buildFwGapCard(raw, perceived, fwName, colorHex) {
+    const gap    = raw - perceived;
+    const gapPct = (gap * 100).toFixed(1);
+    let cssClass, title, desc;
+
+    if (gap < 0.05) {
+      cssClass = 'gap-low';
+      title    = 'Minimal suppression';
+      desc     = 'Agents are using their full voice — what they know is reaching decision-makers.';
+    } else if (gap < 0.15) {
+      cssClass = 'gap-mid';
+      title    = 'Mild suppression';
+      desc     = 'Some self-censorship — concerns surface carefully, some information is lost.';
+    } else if (gap < 0.30) {
+      cssClass = 'gap-high';
+      title    = 'Significant suppression';
+      desc     = 'This group knows more than it says. Consequential knowledge is not reaching decisions.';
+    } else {
+      cssClass = 'gap-crit';
+      title    = 'Critical suppression — Boisjoly-level';
+      desc     = 'Like Boisjoly before Challenger: raw capacity exists but cannot surface to decision-makers.';
+    }
+
+    return `
+      <div class="fw-gap-card ${cssClass}">
+        <div class="fw-gap-card-header">
+          <span class="fw-gap-card-name">${fwName} — Suppression Gap</span>
+          <span class="fw-gap-number">${gapPct}%</span>
+        </div>
+        <div class="fw-gap-title">${title}</div>
+        <div class="fw-gap-desc">${desc}</div>
+      </div>`;
+  }
+
+  // ─────────────────────────────────────────────────
+  // COMBINED READING — names the quadrant pattern
+  // Compact variant for the worldview app.
+  // ─────────────────────────────────────────────────
+
+  function buildFwCombinedReading(raw, perceived, friction, fwName) {
+    const gap = raw - perceived;
+    const highGap  = gap > 0.18;
+    const highFric = friction > 0.45;
+    let stateClass, patternName, synthesis;
+
+    if (!highGap && !highFric) {
+      stateClass  = 'state-healthy';
+      patternName = 'Pattern: The Room Is Working';
+      synthesis   = `Low suppression and low friction — this framework-dominant group is using most of its coordination capacity efficiently. Voice is reaching decisions and the coordination process itself is not consuming excessive energy.`;
+    } else if (highGap && !highFric) {
+      stateClass  = 'state-blocked';
+      patternName = 'Pattern: Knowledge Blocked by Hierarchy';
+      synthesis   = `The process runs reasonably well, but a significant gap exists between what agents know and what they can safely say. <strong>This is the Boisjoly pattern</strong> — low friction does not mean ethical health. This system may be operating on a fraction of its available intelligence.`;
+    } else if (!highGap && highFric) {
+      stateClass  = 'state-exhausted';
+      patternName = 'Pattern: Honest but Exhausted';
+      synthesis   = `Suppression is low — agents are speaking truthfully. But coordination is expensive. The worldview distances in this framework-dominant group are being navigated honestly but at significant energy cost. This is a diversity challenge, not a power challenge — the fix is better coordination scaffolding.`;
+    } else {
+      stateClass  = 'state-breakdown';
+      patternName = 'Pattern: Silenced and Worn Down';
+      synthesis   = `Both suppression and friction are elevated. Agents are censoring themselves <em>and</em> exhausted by the coordination process. These two mechanisms are reinforcing each other. This is the UCP signature of serious institutional ethical risk.`;
+    }
+
+    return `
+      <div class="fw-combined-reading ${stateClass}">
+        <div class="fw-combined-label">Reading Your Results — ${fwName}</div>
+        <div class="fw-combined-pattern">${patternName}</div>
+        <div class="fw-combined-synthesis">${synthesis}</div>
+      </div>`;
+  }
+
+  // ─────────────────────────────────────────────────
+  // VOICE NARRATIVE — the felt experience synthesis
+  // Compact variant for per-framework display.
+  // ─────────────────────────────────────────────────
+
+  function buildFwVoiceNarrative(raw, perceived, friction, fwName) {
+    const gap = raw - perceived;
+    let narrative;
+
+    if (gap > 0.22 && friction > 0.55) {
+      narrative = `You are in the meeting. You can see the problem clearly, but the room has a gravity to it. You say something adjacent to what you actually think — softer, framed as a question. It doesn't land. The decision gets made from what was safe to say, not from what was true. You leave knowing what you did not say.`;
+    } else if (gap > 0.22 && friction <= 0.55) {
+      narrative = `The process works — meetings happen, things get decided. But the critical thing stays in the hallway conversation after the meeting, in the email you almost sent. The decision might even be right. But it was made without the room's full intelligence, and no one can see what was missed.`;
+    } else if (gap <= 0.10 && friction > 0.55) {
+      narrative = `You say what you think, and so does everyone else. But getting anything done together takes enormous effort. You follow the protocol, engage in good faith — and coordination still feels like moving through water. Honest, but exhausted.`;
+    } else if (raw < 0.40) {
+      narrative = `Something fundamental has broken down. You are not thinking about the problem anymore. You are thinking about whether engaging with it is safe. Trust has withdrawn. This is what coordination collapse feels like: not a dramatic failure, just a slow rational retreat.`;
+    } else if (gap <= 0.10 && friction < 0.30) {
+      narrative = `The meeting actually works. Real disagreement sharpens rather than derails the conversation. You leave feeling like your presence mattered, like the decision reflects what the room actually knew. This is rarer than it should be.`;
+    } else {
+      narrative = `You're managing. Coordination happens, but it costs effort. You've learned which things to say directly and which to soften. Whether that's healthy adaptation or accumulated self-censorship is a question you don't always stop to ask.`;
+    }
+
+    return `
+      <div class="fw-voice-narrative">
+        <div class="fw-voice-label">Inside This Framework — ${fwName}</div>
+        <div class="fw-voice-text">${narrative}</div>
+        <div class="fw-voice-attribution">
+          λ Raw ${raw.toFixed(3)} · λ Perceived ${perceived.toFixed(3)} · Friction ${friction.toFixed(3)}
+        </div>
+      </div>`;
+  }
+
+  // ─────────────────────────────────────────────────
+  // FRAMEWORK CONFLICT DIAGNOSIS
+  // Worldview-app specific. Looks at the structural
+  // relationship between the two chosen frameworks
+  // and predicts what type of conflict is most likely —
+  // independently of the simulation results.
+  // ─────────────────────────────────────────────────
+
+  // Lookup table: [keyA, keyB] → diagnosis
+  // Order doesn't matter — sorted alphabetically in lookup.
+  const CONFLICT_DIAGNOSES = {
+    'hierarchical_role|individual_rights': {
+      cssClass: 'conflict-tension',
+      pattern:  'Rule Conflict — Whose Rules Apply?',
+      desc:     `Both frameworks accept the legitimacy of rules, but they disagree on the source. Hierarchical agents defer to institutional authority and role structure; Individual/Rights-Based agents hold that rules must pass a fairness test applicable to everyone equally. When they share a room, the dispute is often not about what to do but about <em>who has the authority to decide</em> — which can masquerade as a factual disagreement.`,
+      frictionPrediction: `Moderate. Both frameworks can work within shared procedures, but friction rises when the procedure itself is perceived as unfair by one side.`,
+      suppressionPrediction: `Moderate to high. The authority asymmetry in hierarchical systems can systematically suppress rights-based objections — especially when the hierarchical agent controls the agenda.`,
+    },
+    'hierarchical_role|relational_we': {
+      cssClass: 'conflict-authority',
+      pattern:  'Power Suppression Risk — Authority vs. Voice',
+      desc:     `This is among the highest-risk pairings for suppression. Hierarchical agents operate through defined roles and upward authority; Relational/We-Centered agents require genuine communal voice to function. In practice, the hierarchical structure tends to determine who speaks and who is heard — often unintentionally crowding out the relational framework's mode of coordination entirely.`,
+      frictionPrediction: `Low to moderate. The hierarchical framework provides clear process structure, which reduces friction — but at a cost.`,
+      suppressionPrediction: `High. The relational framework requires mutual recognition that hierarchical structures structurally undermine. Watch for large suppression gaps when this pairing runs.`,
+    },
+    'hierarchical_role|boundary_integrity': {
+      cssClass: 'conflict-alignment',
+      pattern:  'Conservative Alignment — Shared Constraint Logic',
+      desc:     `Both frameworks operate through constraint and defined structure. Hierarchical agents follow role-based order; Boundary/Integrity-Centered agents protect non-negotiable limits. While their specific commitments differ, both accept the legitimacy of binding rules and both resist improvisation. This pairing tends toward relatively stable coordination — but it can become rigid and slow to respond to genuine ethical novelty.`,
+      frictionPrediction: `Low to moderate. Shared acceptance of structure reduces friction, but disagreements over <em>which</em> boundaries are sacred can be sharp when they arise.`,
+      suppressionPrediction: `Moderate. Neither framework emphasizes open voice; suppression may be low simply because neither side expects or requires it.`,
+    },
+    'hierarchical_role|custodial_stewardship': {
+      cssClass: 'conflict-temporal',
+      pattern:  'Temporal Horizon Gap — Present Order vs. Long Obligation',
+      desc:     `Hierarchical agents are oriented to the current institutional structure and its chain of command. Custodial/Stewardship agents are oriented to obligations inherited from the past and owed to the future — a timeframe that extends far beyond any current hierarchy. This produces a distinctive conflict: the hierarchical agent asks "who has authority now?" and the custodial agent asks "what did we inherit and what are we leaving behind?"`,
+      frictionPrediction: `Moderate. The frameworks can coexist procedurally but tend to talk past each other on questions of long-term consequence.`,
+      suppressionPrediction: `Moderate. Custodial concerns about the future are often treated as abstract or impractical within hierarchical structures, producing a quieter, legitimized form of suppression.`,
+    },
+    'boundary_integrity|individual_rights': {
+      cssClass: 'conflict-alignment',
+      pattern:  'Convergent Protection — Different Reasons, Similar Instinct',
+      desc:     `Both frameworks are protective — one protects sacred limits, the other protects individual rights. They often arrive at similar conclusions through different reasoning. The tension emerges at the edges: Boundary/Integrity-Centered agents resist compromise even when rights-based reasoning would permit it; Individual/Rights-Based agents resist treating any limit as absolutely non-negotiable without a fairness justification.`,
+      frictionPrediction: `Low to moderate. Agreement on outcomes is common; disagreement on justification is frequent but often tolerable.`,
+      suppressionPrediction: `Low. Neither framework structurally silences the other — disagreements tend to surface as explicit principled arguments rather than suppressed voice.`,
+    },
+    'boundary_integrity|relational_we': {
+      cssClass: 'conflict-value',
+      pattern:  'Community vs. Containment — Deep Value Conflict',
+      desc:     `This is one of the deepest structural tensions in ethics. Boundary/Integrity-Centered agents protect something by keeping it separate; Relational/We-Centered agents build something by bringing people together across difference. What one framework calls "protecting integrity," the other may call "exclusion." What one calls "building community," the other may call "dissolving essential distinctions." Both descriptions can be simultaneously accurate.`,
+      frictionPrediction: `High. These frameworks have genuinely opposed logics. Coordination requires explicit bridging — neither can simply extend its own mode to accommodate the other.`,
+      suppressionPrediction: `Variable. Neither structurally dominates the other in authority terms, so suppression depends heavily on context and who controls the agenda.`,
+    },
+    'boundary_integrity|custodial_stewardship': {
+      cssClass: 'conflict-alignment',
+      pattern:  'Protective Alignment — Guardianship Across Time',
+      desc:     `Both frameworks are oriented toward protecting something across time — one protects the integrity of specific limits, the other protects a custodial relationship with land, tradition, and future generations. They share a conservative temporal orientation and both resist change that compromises something held as sacred or inherited. This pairing tends to be complementary, though they may differ on what specifically deserves protection.`,
+      frictionPrediction: `Low. Shared orientation toward long-term protection creates natural alignment.`,
+      suppressionPrediction: `Low to moderate. Neither framework requires the other to suppress its core concerns — though specific contested objects (what is sacred? what was inherited?) can produce sharp localized disagreements.`,
+    },
+    'individual_rights|relational_we': {
+      cssClass: 'conflict-tension',
+      pattern:  'The Classic Tension — Procedure vs. Care',
+      desc:     `This is the central tension in modern ethics — the conflict that divides Kantian ethics from care ethics, universal rules from contextual relationships, procedural fairness from relational responsiveness. Individual/Rights-Based agents ask: "Does this rule apply equally to everyone?" Relational/We-Centered agents ask: "What does this person, in this relationship, actually need?" Neither question is wrong; they produce different answers precisely because they are measuring different things.`,
+      frictionPrediction: `Moderate to high. The frameworks have fundamentally different decision procedures. Agreeing on a process for making decisions requires resolving the meta-question of whose process to use.`,
+      suppressionPrediction: `Moderate. Neither framework structurally silences the other, but procedural frameworks tend to favor explicit arguable claims — which can disadvantage relational reasoning that operates through narrative and context rather than principle.`,
+    },
+    'individual_rights|custodial_stewardship': {
+      cssClass: 'conflict-temporal',
+      pattern:  'Present Rights vs. Inherited Obligation',
+      desc:     `Individual/Rights-Based agents ground authority in the current individual — rights are held by persons living now. Custodial/Stewardship agents ground authority in inherited obligations and future responsibilities — the relevant moral community extends across generations. This produces genuine incommensurability: both frameworks are internally coherent, but they disagree on who counts as a stakeholder and across what timeframe moral accountability runs.`,
+      frictionPrediction: `Moderate. Can coordinate procedurally in many contexts, but deep disagreements emerge on issues of long-term consequence, environmental obligations, or ancestral claims.`,
+      suppressionPrediction: `Moderate. Rights-based frameworks tend to dominate institutional procedures, which can marginalize custodial reasoning that lacks a procedural vocabulary.`,
+    },
+    'relational_we|custodial_stewardship': {
+      cssClass: 'conflict-alignment',
+      pattern:  'Community Alignment — Shared Relational Ground',
+      desc:     `Both frameworks are community-oriented and extend beyond the individual. Relational/We-Centered agents build through mutual recognition in the present; Custodial/Stewardship agents build through accountability to the past and future. They share an orientation toward collective flourishing over individual advantage, and both resist frameworks that treat persons as isolated rights-holders. This is generally the most complementary pairing — though they may differ on what the relevant community is and how far it extends.`,
+      frictionPrediction: `Low. Natural alignment on collective orientation reduces friction substantially.`,
+      suppressionPrediction: `Low. Both frameworks emphasize voice and collective knowing — suppression tends to be low because both value what the other has to say.`,
+    },
+  };
+
+  function getConflictDiagnosis(keyA, keyB) {
+    const sorted = [keyA, keyB].sort();
+    const lookupKey = sorted.join('|');
+    return CONFLICT_DIAGNOSES[lookupKey] || null;
+  }
+
+  function buildFrameworkConflictDiagnosis(fwA, fwB) {
+    const diag = getConflictDiagnosis(fwA.key, fwB.key);
+    if (!diag) return '';
+
+    return `
+      <div class="conflict-diagnosis ${diag.cssClass}">
+        <div class="conflict-diagnosis-header">
+          <div>
+            <div class="conflict-diagnosis-label">Framework Conflict Analysis — ${fwA.displayName} + ${fwB.displayName}</div>
+            <div class="conflict-diagnosis-pattern">${diag.pattern}</div>
+          </div>
+        </div>
+        <div class="conflict-diagnosis-desc">${diag.desc}</div>
+        <div class="conflict-prediction-row">
+          <div class="conflict-prediction">
+            <div class="pred-label">Friction Prediction</div>
+            <div class="pred-text">${diag.frictionPrediction}</div>
+          </div>
+          <div class="conflict-prediction">
+            <div class="pred-label">Suppression Prediction</div>
+            <div class="pred-text">${diag.suppressionPrediction}</div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  // ─────────────────────────────────────────────────
   // RENDER ALL RESULTS
   // ─────────────────────────────────────────────────
   function renderResults(fwA, fwB, dataA, dataB, dataMix, scenarioName, seed, agents, steps) {
+    const mA = getMetrics(dataA);
+    const mB = getMetrics(dataB);
+    const mM = dataMix ? getMetrics(dataMix) : null;
+
+    // ── Results header
+    document.getElementById('resultsHeader').textContent =
+      `Comparison: ${fwA.displayName}  vs.  ${fwB.displayName} · ${SCENARIO_DESCS[scenarioName].split('.')[0]} · ${agents} agents · ${steps} steps · seed ${seed}`;
+
+    // ── Profile cards
+    document.getElementById('profileTitleA').textContent = fwA.displayName;
+    document.getElementById('profileDescA').textContent  = fwA.description;
+    document.getElementById('profileTitleB').textContent = fwB.displayName;
+    document.getElementById('profileDescB').textContent  = fwB.description;
+
+    const renderTags = (id, tags) => {
+      document.getElementById(id).innerHTML = tags.map(t =>
+        `<span class="profile-tag">${t}</span>`).join('');
+    };
+    renderTags('profileTagsA', fwA.tags);
+    renderTags('profileTagsB', fwB.tags);
+
+    document.getElementById('profileValuesA').textContent = `Core values: ${fwA.coreValues}`;
+    document.getElementById('profileValuesB').textContent = `Core values: ${fwB.coreValues}`;
+
+    // ── Legend
+    document.getElementById('legendA').textContent = fwA.displayName;
+    document.getElementById('legendB').textContent = fwB.displayName;
+
+    // ── Combined Radar
+    drawRadar('combinedRadar', fwA.radar, fwB.radar, fwA.displayName, fwB.displayName);
+
+    // ── Metric rows — now with threshold phrases
+    const metricRows = (m) => `
+      <div class="comp-metric">
+        <div class="cm-label">λ Raw</div>
+        <div class="cm-value ${lambdaClass(m.lambda_raw)}">${m.lambda_raw.toFixed(3)}</div>
+        <div class="cm-name">Coordination Capacity</div>
+        <div class="cm-threshold">${lambdaRawPhrase(m.lambda_raw)}</div>
+      </div>
+      <div class="comp-metric">
+        <div class="cm-label">λ Perceived</div>
+        <div class="cm-value ${lambdaClass(m.lambda_perceived)}">${m.lambda_perceived.toFixed(3)}</div>
+        <div class="cm-name">Experienced Coordination</div>
+        <div class="cm-threshold">${lambdaPercPhrase(m.lambda_perceived)}</div>
+      </div>
+      <div class="comp-metric">
+        <div class="cm-label">Friction</div>
+        <div class="cm-value ${frictionClass(m.friction)}">${m.friction.toFixed(3)}</div>
+        <div class="cm-name">Coordination Cost</div>
+        <div class="cm-threshold">${frictionPhrase(m.friction)}</div>
+      </div>`;
+
+    // ── Delta column + mixed column
+    const deltaCol = mM ? `
+      <div class="comp-delta">
+        <div class="comp-delta-row">${delta(mA.lambda_raw, mM.lambda_raw)}<br><span style="font-size:.6rem">vs A</span></div>
+        <div class="comp-delta-row">${delta(mA.lambda_perceived, mM.lambda_perceived)}<br><span style="font-size:.6rem">vs A</span></div>
+        <div class="comp-delta-row">${delta(mA.friction, mM.friction)}<br><span style="font-size:.6rem">vs A</span></div>
+      </div>
+      <div class="comp-col col-mix">
+        <div class="comp-col-header">
+          <span>A+B Mixed</span>
+          <span class="col-badge">50 / 50</span>
+        </div>
+        <div class="comp-col-body">${metricRows(mM)}</div>
+      </div>
+      <div class="comp-delta">
+        <div class="comp-delta-row">${delta(mM.lambda_raw, mB.lambda_raw)}<br><span style="font-size:.6rem">vs Mix</span></div>
+        <div class="comp-delta-row">${delta(mM.lambda_perceived, mB.lambda_perceived)}<br><span style="font-size:.6rem">vs Mix</span></div>
+        <div class="comp-delta-row">${delta(mM.friction, mB.friction)}<br><span style="font-size:.6rem">vs Mix</span></div>
+      </div>` : `
+      <div class="comp-delta" style="justify-content:center">
+        <div class="comp-delta-row" style="text-align:center;margin-bottom:55px">${delta(mA.lambda_raw,mB.lambda_raw)}</div>
+        <div class="comp-delta-row" style="text-align:center;margin-bottom:55px">${delta(mA.lambda_perceived,mB.lambda_perceived)}</div>
+        <div class="comp-delta-row" style="text-align:center">${delta(mA.friction,mB.friction)}</div>
+      </div>`;
+
+    document.getElementById('compCols').innerHTML = `
+      <div class="comp-col col-a">
+        <div class="comp-col-header">
+          <span>A</span>
+          <span>${fwA.displayName}</span>
+          <span class="col-badge">80% dominant</span>
+        </div>
+        <div class="comp-col-body">${metricRows(mA)}</div>
+      </div>
+      ${deltaCol}
+      <div class="comp-col col-b">
+        <div class="comp-col-header">
+          <span>B</span>
+          <span>${fwB.displayName}</span>
+          <span class="col-badge">80% dominant</span>
+        </div>
+        <div class="comp-col-body">${metricRows(mB)}</div>
+      </div>`;
+
+    // ── Agent Voices — with per-agent suppression flag
+    const voicesA = (dataA.agents || []).filter(a => a.worldview === fwA.engineKey).slice(0,3);
+    const voicesB = (dataB.agents || []).filter(a => a.worldview === fwB.engineKey).slice(0,3);
+    const sampleA = voicesA.length ? voicesA : (dataA.agents || []).slice(0,3);
+    const sampleB = voicesB.length ? voicesB : (dataB.agents || []).slice(0,3);
+
+    const voiceCard = (a) => {
+      const agentGap = (a.lambda_raw != null && a.lambda_perceived != null)
+        ? a.lambda_raw - a.lambda_perceived : null;
+      return `
+        <div class="voice-card">
+          <div class="voice-agent">${a.name}</div>
+          <div class="voice-stats">
+            λ raw: ${a.lambda_raw != null ? a.lambda_raw.toFixed(3) : '—'}
+            &nbsp;|&nbsp; λ perceived: ${a.lambda_perceived != null ? a.lambda_perceived.toFixed(3) : '—'}
+            &nbsp;|&nbsp; stress: ${a.stress != null ? a.stress.toFixed(3) : '—'}
+          </div>
+          ${a.lambda_perceived != null ? `
+            <div style="font-size:.72rem;color:var(--prf-muted);margin-top:3px;font-style:italic">
+              ${lambdaPercPhrase(a.lambda_perceived)}
+              ${agentGap != null && agentGap > 0.15
+                ? ` · <strong style="color:var(--prf-warn)">suppression gap ${(agentGap*100).toFixed(1)}%</strong>` : ''}
+            </div>` : ''}
+          ${a.response ? `<div class="voice-quote">"${a.response}"</div>` : ''}
+        </div>`;
+    };
+
+    document.getElementById('voicesGrid').innerHTML = `
+      <div class="voices-col col-a">
+        <div class="voices-col-header">${fwA.displayName} agents</div>
+        ${sampleA.map(voiceCard).join('')}
+      </div>
+      <div class="voices-col col-b">
+        <div class="voices-col-header">${fwB.displayName} agents</div>
+        ${sampleB.map(voiceCard).join('')}
+      </div>`;
+
+    // ── Interpretation — friction only (strict ownership)
+    const frA = mA.friction, frB = mB.friction;
+    const fricDiff = Math.abs(frA - frB);
+    const lowerFricName  = frA < frB ? fwA.displayName : fwB.displayName;
+    const higherFricName = frA < frB ? fwB.displayName : fwA.displayName;
+
+    let frictionReading = `<strong>${lowerFricName}</strong> produced lower coordination drag
+      (${Math.min(frA,frB).toFixed(3)} vs ${Math.max(frA,frB).toFixed(3)}).`;
+
+    if (fricDiff > 0.12) {
+      frictionReading += ` This is a substantial difference — ${higherFricName}-dominant groups
+        are spending significantly more energy on internal coordination before any work on the
+        actual ethical problem can begin. That energy is not recoverable once spent.`;
+    } else if (fricDiff > 0.04) {
+      frictionReading += ` A modest but meaningful difference. Both frameworks can coordinate
+        in this scenario, but ${lowerFricName} does so at lower cost.`;
+    } else {
+      frictionReading += ` Both frameworks produce comparable coordination cost in this scenario.
+        The meaningful differences between them show up in suppression and voice, not in drag.`;
+    }
+
+    if (mM) {
+      const mixFric = mM.friction;
+      const worstPure = Math.max(frA, frB);
+      const bestPure  = Math.min(frA, frB);
+      if (mixFric < bestPure - 0.03) {
+        frictionReading += ` Notably, the mixed (50/50) configuration produced <em>lower</em>
+          friction than either pure framework (${mixFric.toFixed(3)}). These two frameworks
+          appear to be complementary — each compensates for the drag the other produces.`;
+      } else if (mixFric > worstPure + 0.03) {
+        frictionReading += ` The mixed configuration produced <em>more</em> friction than
+          either pure framework (${mixFric.toFixed(3)}). These frameworks have significant
+          moral emphasis conflicts that make coordination harder when both are present at
+          high representation — not easier.`;
+      } else {
+        frictionReading += ` The mixed configuration produced friction (${mixFric.toFixed(3)})
+          between the two pure values — mixing neither substantially helps nor hurts coordination
+          cost in this scenario.`;
+      }
+    }
+
+    document.getElementById('interpText').innerHTML = frictionReading;
+
+    // ── Per-framework deep readings (new section E)
+    const perFwHTML = `
+      <div class="fw-result-block">
+        <div class="fw-result-header header-a">
+          A &nbsp;·&nbsp; ${fwA.displayName} — Dominant System Reading
+        </div>
+        <div class="fw-result-body">
+          ${buildFwCombinedReading(mA.lambda_raw, mA.lambda_perceived, mA.friction, fwA.displayName)}
+          <div class="fw-suppression-row">
+            ${buildFwGapCard(mA.lambda_raw, mA.lambda_perceived, fwA.displayName, '#4a7fb5')}
+          </div>
+          ${buildFwVoiceNarrative(mA.lambda_raw, mA.lambda_perceived, mA.friction, fwA.displayName)}
+        </div>
+      </div>
+
+      <div class="fw-result-block">
+        <div class="fw-result-header header-b">
+          B &nbsp;·&nbsp; ${fwB.displayName} — Dominant System Reading
+        </div>
+        <div class="fw-result-body">
+          ${buildFwCombinedReading(mB.lambda_raw, mB.lambda_perceived, mB.friction, fwB.displayName)}
+          <div class="fw-suppression-row">
+            ${buildFwGapCard(mB.lambda_raw, mB.lambda_perceived, fwB.displayName, '#c9a84c')}
+          </div>
+          ${buildFwVoiceNarrative(mB.lambda_raw, mB.lambda_perceived, mB.friction, fwB.displayName)}
+        </div>
+      </div>
+
+      ${mM ? `
+      <div class="fw-result-block">
+        <div class="fw-result-header header-mix">
+          A+B Mixed (50/50) — What Happens When Both Are in the Room
+        </div>
+        <div class="fw-result-body">
+          ${buildFwCombinedReading(mM.lambda_raw, mM.lambda_perceived, mM.friction, 'Mixed System')}
+          <div class="fw-suppression-row">
+            ${buildFwGapCard(mM.lambda_raw, mM.lambda_perceived, 'Mixed', '#6b7a9a')}
+          </div>
+          ${buildFwVoiceNarrative(mM.lambda_raw, mM.lambda_perceived, mM.friction, 'Mixed System')}
+        </div>
+      </div>` : ''}
+    `;
+
+    document.getElementById('perFwReadings').innerHTML = perFwHTML;
+
+    // ── Framework conflict diagnosis
+    document.getElementById('conflictDiagnosis').innerHTML =
+      buildFrameworkConflictDiagnosis(fwA, fwB);
+
+    // Show results
+    document.getElementById('results').classList.add('visible');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
     const mA = getMetrics(dataA);
     const mB = getMetrics(dataB);
     const mM = dataMix ? getMetrics(dataMix) : null;
@@ -1312,46 +1999,6 @@
         <div class="voices-col-header">${fwB.displayName} agents</div>
         ${sampleB.map(voiceCard).join('')}
       </div>`;
-
-    // ── Interpretation
-    const frA = mA.friction, frB = mB.friction;
-    const gapA = mA.lambda_raw - mA.lambda_perceived;
-    const gapB = mB.lambda_raw - mB.lambda_perceived;
-    const lowerFric  = frA < frB ? fwA.displayName : fwB.displayName;
-    const higherFric = frA < frB ? fwB.displayName : fwA.displayName;
-    const fricDiff   = Math.abs(frA - frB);
-
-    let interpText = `<strong>${lowerFric}</strong> produced lower coordination friction (${Math.min(frA,frB).toFixed(3)} vs ${Math.max(frA,frB).toFixed(3)}) `;
-    if (fricDiff > 0.12) {
-      interpText += `— a substantial difference of ${(fricDiff*100).toFixed(1)} percentage points. This means that in this scenario, ${higherFric}-dominant groups were spending significantly more energy overcoming internal coordination costs. That energy is not available for the actual ethical problem.`;
-    } else if (fricDiff > 0.04) {
-      interpText += `— a modest but meaningful difference. Both frameworks can coordinate in this scenario, but ${lowerFric} does so at lower cost.`;
-    } else {
-      interpText += `— essentially the same. Both frameworks produce comparable coordination capacity in this scenario. The real differences show up in how agents reason about the problem, not in how well they coordinate.`;
-    }
-
-    const largerGap  = gapA > gapB ? fwA.displayName : fwB.displayName;
-    const gapSize    = Math.max(gapA, gapB);
-    if (gapSize > 0.18) {
-      interpText += ` The perception gap in ${largerGap}-dominant groups is especially large (${gapSize.toFixed(3)}), meaning agents have more capacity than they can safely use. This is a structural signal: the power and information dynamics inside this framework are suppressing voice.`;
-    }
-
-    if (mM) {
-      const mixFric = mM.friction;
-      const betterThanWorst = Math.max(frA,frB) - mixFric;
-      if (betterThanWorst > 0.05) {
-        interpText += ` Interestingly, the mixed (50/50) configuration produced lower friction (${mixFric.toFixed(3)}) than the worse of the two pure frameworks. This is the diversity-coordination tradeoff: mixing reasoning styles can reduce friction when the frameworks are complementary.`;
-      } else if (mixFric > Math.max(frA,frB)) {
-        interpText += ` The mixed configuration actually produced more friction than either pure framework — likely because these two frameworks have significant moral emphasis conflicts that make coordination harder when both are present at high representation.`;
-      }
-    }
-
-    document.getElementById('interpText').innerHTML = interpText;
-
-    // Show results
-    document.getElementById('results').classList.add('visible');
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 
   // ─────────────────────────────────────────────────
   // RADAR CHART (SVG-based, drawn on canvas)
