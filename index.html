@@ -1093,6 +1093,13 @@
       <div class="card-body">
         <div class="interpretation" id="interpBox">
           <div class="int-label">Friction Reading Only — see Section C½ for suppression and voice</div>
+          <p style="font-size:.76rem;color:rgba(255,255,255,.5);font-style:italic;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.12)">
+            This panel describes coordination cost (drag). What that cost means morally —
+            whether it represents injustice, institutional failure, relational fracture, or
+            degraded stewardship — depends on the framework through which you interpret it.
+            The same numbers carry different significance to different PRFs.
+            <span style="color:rgba(255,255,255,.28)"> · No PRF profile loaded — showing general interpretation.</span>
+          </p>
           <p id="interpText">—</p>
         </div>
       </div>
@@ -1447,8 +1454,8 @@
       desc     = 'This group knows more than it says. Consequential knowledge is not reaching decisions.';
     } else {
       cssClass = 'gap-crit';
-      title    = 'Critical suppression — Boisjoly-level';
-      desc     = 'Like Boisjoly before Challenger: raw capacity exists but cannot surface to decision-makers.';
+      title    = 'Critical suppression — decisions without full intelligence';
+      desc     = 'What agents know cannot safely reach decision-makers. Boisjoly before Challenger is one procedural-ethics reading of this pattern — other frameworks name the same gap differently.';
     }
 
     return `
@@ -1480,7 +1487,12 @@
     } else if (highGap && !highFric) {
       stateClass  = 'state-blocked';
       patternName = 'Pattern: Knowledge Blocked by Hierarchy';
-      synthesis   = `The process runs reasonably well, but a significant gap exists between what agents know and what they can safely say. <strong>This is the Boisjoly pattern</strong> — low friction does not mean ethical health. This system may be operating on a fraction of its available intelligence.`;
+      synthesis   = `The process runs reasonably well, but a significant gap exists between
+        what agents know and what they can safely say. <strong>One reading of this pattern</strong>
+        — from a procedural ethics standpoint — is the Boisjoly case before Challenger: low
+        friction, high suppression, catastrophic outcome. Other frameworks read the same gap
+        as fractured mutual recognition, dishonored inherited knowledge, or corrupted role
+        authority. What all readings share: low friction does not mean ethical health.`;
     } else if (!highGap && highFric) {
       stateClass  = 'state-exhausted';
       patternName = 'Pattern: Honest but Exhausted';
