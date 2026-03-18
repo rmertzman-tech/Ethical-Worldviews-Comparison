@@ -431,46 +431,174 @@
   .comp-delta .delta-val.pos { color: var(--prf-success); }
   .comp-delta .delta-val.neg { color: var(--prf-danger); }
 
-  /* ── Radar Chart Canvas ── */
-  .radar-section {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;
+  /* ── Dual chart layout ── */
+  .charts-intro {
+    font-size: .86rem;
+    line-height: 1.65;
+    color: #555;
+    background: var(--prf-warm);
+    border-left: 3px solid var(--prf-sky);
+    padding: 12px 14px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 18px;
+  }
+  .charts-intro strong { color: var(--prf-navy); }
+
+  .charts-dual-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
   }
 
-  .radar-wrap { text-align: center; }
-
-  .radar-title {
-    font-family: 'Courier New', monospace; font-size: .72rem;
-    text-transform: uppercase; letter-spacing: .1em;
-    color: var(--prf-muted); margin-bottom: 10px;
+  .chart-wrap-titled {
+    background: #f8f9fc;
+    border: 1px solid var(--prf-border);
+    border-radius: var(--radius);
+    padding: 14px 14px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  canvas.radar-canvas {
-    display: block; margin: 0 auto;
+  .chart-main-title {
+    font-family: 'Courier New', monospace;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--prf-navy);
+    margin-bottom: 2px;
+    text-align: center;
+    font-weight: bold;
   }
 
-  /* Combined radar */
-  .combined-radar-wrap {
-    background: #f8f9fc; border: 1px solid var(--prf-border);
-    border-radius: var(--radius); padding: 18px; text-align: center;
+  .chart-sub-title {
+    font-size: .72rem;
+    color: var(--prf-muted);
+    font-style: italic;
+    margin-bottom: 8px;
+    text-align: center;
   }
 
-  .combined-radar-title {
-    font-family: 'Courier New', monospace; font-size: .72rem;
-    text-transform: uppercase; letter-spacing: .1em;
-    color: var(--prf-muted); margin-bottom: 4px;
+  .chart-note {
+    font-size: .72rem;
+    color: var(--prf-muted);
+    font-style: italic;
+    line-height: 1.45;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--prf-border);
+    text-align: center;
   }
 
-  .radar-legend {
-    display: flex; justify-content: center; gap: 18px; margin-top: 10px;
+  /* ── MFQ Callout cards ── */
+  .mfq-callout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
   }
 
-  .radar-legend-item {
-    display: flex; align-items: center; gap: 6px;
-    font-size: .76rem; color: var(--prf-ink);
+  .mfq-callout {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--prf-border);
   }
 
-  .radar-legend-dot {
-    width: 10px; height: 10px; border-radius: 50%;
+  .mfq-callout-header {
+    padding: 9px 14px;
+    font-size: .82rem;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mfq-callout.callout-a .mfq-callout-header { background: var(--fw-a); }
+  .mfq-callout.callout-b .mfq-callout-header { background: var(--fw-b); color: var(--prf-deep); }
+
+  .mfq-callout-body {
+    padding: 12px 14px;
+    background: #fff;
+  }
+
+  .mfq-callout-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .mfq-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .75rem;
+  }
+
+  .mfq-bar-label {
+    font-family: 'Courier New', monospace;
+    font-size: .67rem;
+    color: var(--prf-muted);
+    width: 100px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .mfq-bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--prf-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .mfq-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+    width: 0%;
+  }
+
+  /* Foundation-specific colors */
+  .mfq-bar-fill.f-care      { background: linear-gradient(90deg, #e06060, #c03030); }
+  .mfq-bar-fill.f-fairness  { background: linear-gradient(90deg, #4a7fb5, #2a5090); }
+  .mfq-bar-fill.f-loyalty   { background: linear-gradient(90deg, #6a9a50, #3a7030); }
+  .mfq-bar-fill.f-authority { background: linear-gradient(90deg, #8a6fb5, #5a3f90); }
+  .mfq-bar-fill.f-purity    { background: linear-gradient(90deg, #c9a84c, #9a7820); }
+
+  .mfq-bar-val {
+    font-family: 'Courier New', monospace;
+    font-size: .64rem;
+    color: var(--prf-muted);
+    width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .mfq-callout-text {
+    font-size: .82rem;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  /* ── Haidt note ── */
+  .haidt-note {
+    font-size: .76rem;
+    color: var(--prf-muted);
+    background: #f4f7fc;
+    border: 1px solid var(--prf-border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .haidt-note strong { color: var(--prf-navy); }
+
+  @media (max-width: 680px) {
+    .charts-dual-row  { grid-template-columns: 1fr; }
+    .mfq-callout-grid { grid-template-columns: 1fr; }
   }
 
   /* ── Framework Profile Cards ── */
@@ -976,59 +1104,133 @@
       </div>
     </div>
 
-    <!-- Framework profiles + combined radar -->
+    <!-- Framework profiles + dual radar charts -->
     <div class="card">
       <div class="card-header">
         <span class="card-num">A</span>
-        <h2>Framework Profiles — What Each Prioritizes</h2>
+        <h2>Framework Profiles — Two Lenses on the Same Frameworks</h2>
       </div>
       <div class="card-body">
 
-        <div class="radar-section">
+        <div class="charts-intro">
+          Two charts read each framework through different lenses.
+          <strong>Chart 1 (UCP Coordination Profile)</strong> shows how the framework weights
+          coordination signals in the simulation engine — what it amplifies and what it discounts
+          when agents are trying to work together.
+          <strong>Chart 2 (Moral Foundations Profile)</strong> shows the psychological architecture
+          of the framework using Haidt et al.'s five moral foundations — the emotional and
+          intuitive building blocks from which moral reasoning is constructed.
+          The same framework looks different through each lens, and both lenses are needed
+          to understand why two frameworks produce the simulation numbers they do.
+        </div>
 
-          <!-- Combined overlay radar -->
-          <div class="combined-radar-wrap">
-            <div class="combined-radar-title">Moral Emphasis Profile — Overlay</div>
-            <canvas id="combinedRadar" class="radar-canvas" width="280" height="280"></canvas>
-            <div class="radar-legend">
-              <div class="radar-legend-item">
-                <div class="radar-legend-dot" style="background:var(--fw-a)"></div>
+        <!-- Dual chart row -->
+        <div class="charts-dual-row">
+
+          <div class="chart-wrap-titled">
+            <div class="chart-main-title">Chart 1 — UCP Coordination Profile</div>
+            <div class="chart-sub-title">How each framework weights coordination signals in the engine</div>
+            <canvas id="combinedRadar" width="300" height="300" style="display:block;margin:0 auto"></canvas>
+            <div class="radar-legend" style="display:flex;justify-content:center;gap:16px;margin-top:8px">
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem">
+                <div style="width:10px;height:10px;border-radius:50%;background:var(--fw-a)"></div>
                 <span id="legendA">Framework A</span>
               </div>
-              <div class="radar-legend-item">
-                <div class="radar-legend-dot" style="background:var(--fw-b)"></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem">
+                <div style="width:10px;height:10px;border-radius:50%;background:var(--fw-b)"></div>
                 <span id="legendB">Framework B</span>
               </div>
             </div>
+            <div class="chart-note">
+              Axes show relative weighting of each coordination signal, normalized
+              to the maximum weight used by any framework. A value of 100 means this
+              framework weights this signal more heavily than any other.
+            </div>
           </div>
 
-          <!-- Profile cards -->
-          <div class="profile-grid">
-            <div class="profile-card card-a">
-              <div class="profile-card-header">
-                <span>A</span>
-                <span id="profileTitleA">Framework A</span>
+          <div class="chart-wrap-titled">
+            <div class="chart-main-title">Chart 2 — Moral Foundations Profile</div>
+            <div class="chart-sub-title">Haidt et al. five foundations — psychological architecture of moral reasoning</div>
+            <canvas id="mfqRadar" width="300" height="300" style="display:block;margin:0 auto"></canvas>
+            <div class="radar-legend" style="display:flex;justify-content:center;gap:16px;margin-top:8px">
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem">
+                <div style="width:10px;height:10px;border-radius:50%;background:var(--fw-a)"></div>
+                <span id="legendMFQA">Framework A</span>
               </div>
-              <div class="profile-card-body">
-                <div class="profile-desc" id="profileDescA">—</div>
-                <div class="profile-tags" id="profileTagsA"></div>
-                <div class="profile-values" id="profileValuesA"></div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem">
+                <div style="width:10px;height:10px;border-radius:50%;background:var(--fw-b)"></div>
+                <span id="legendMFQB">Framework B</span>
               </div>
             </div>
-            <div class="profile-card card-b">
-              <div class="profile-card-header">
-                <span>B</span>
-                <span id="profileTitleB">Framework B</span>
-              </div>
-              <div class="profile-card-body">
-                <div class="profile-desc" id="profileDescB">—</div>
-                <div class="profile-tags" id="profileTagsB"></div>
-                <div class="profile-values" id="profileValuesB"></div>
-              </div>
+            <div class="chart-note">
+              Values derived from MFQ research literature (Graham, Haidt et al.).
+              These are <em>descriptive</em> — they show how people with each reasoning
+              style tend to weight moral intuitions, not which framework is more ethical.
             </div>
           </div>
 
         </div>
+
+        <!-- Haidt foundations key -->
+        <div class="haidt-note">
+          <strong>The five moral foundations (Haidt et al.):</strong>
+          <strong style="color:#c03030">Care/Harm</strong> — protecting people from suffering ·
+          <strong style="color:#2a5090">Fairness/Reciprocity</strong> — equal treatment and proportional justice ·
+          <strong style="color:#3a7030">Loyalty/Betrayal</strong> — group solidarity and commitment ·
+          <strong style="color:#5a3f90">Authority/Subversion</strong> — legitimate hierarchy and inherited order ·
+          <strong style="color:#9a7820">Purity/Sanctity</strong> — protecting what is sacred or inviolable
+        </div>
+
+        <!-- Per-framework MFQ callout cards -->
+        <div class="mfq-callout-grid">
+          <div class="mfq-callout callout-a">
+            <div class="mfq-callout-header">
+              <span>A</span>
+              <span id="calloutTitleA">Framework A</span>
+            </div>
+            <div class="mfq-callout-body">
+              <div class="mfq-callout-bars" id="calloutBarsA"></div>
+              <div class="mfq-callout-text" id="calloutTextA">—</div>
+            </div>
+          </div>
+          <div class="mfq-callout callout-b">
+            <div class="mfq-callout-header">
+              <span>B</span>
+              <span id="calloutTitleB">Framework B</span>
+            </div>
+            <div class="mfq-callout-body">
+              <div class="mfq-callout-bars" id="calloutBarsB"></div>
+              <div class="mfq-callout-text" id="calloutTextB">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile cards -->
+        <div class="profile-grid">
+          <div class="profile-card card-a">
+            <div class="profile-card-header">
+              <span>A</span>
+              <span id="profileTitleA">Framework A</span>
+            </div>
+            <div class="profile-card-body">
+              <div class="profile-desc" id="profileDescA">—</div>
+              <div class="profile-tags" id="profileTagsA"></div>
+              <div class="profile-values" id="profileValuesA"></div>
+            </div>
+          </div>
+          <div class="profile-card card-b">
+            <div class="profile-card-header">
+              <span>B</span>
+              <span id="profileTitleB">Framework B</span>
+            </div>
+            <div class="profile-card-body">
+              <div class="profile-desc" id="profileDescB">—</div>
+              <div class="profile-tags" id="profileTagsB"></div>
+              <div class="profile-values" id="profileValuesB"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1145,8 +1347,14 @@
       description:  'Agents follow institutional roles and authority structures. They believe stable hierarchy is what keeps organizations functional and ethical. Dissent travels upward through proper channels; deviation from role is itself an ethical violation.',
       tags:         ['order', 'role-responsibility', 'structure', 'institutional-stability'],
       coreValues:   'Stability, role coherence, institutional order',
-      // Care, Fairness, Community, Boundary (from block_weights * 100, rounded)
-      radar:        { Care: 15, Fairness: 40, Community: 60, Boundary: 80 },
+      // UCP coordination weights — normalized to max per axis across all 5 frameworks
+      // Source: WORLDVIEW_BLOCK_WEIGHTS in ucp_final_singlefile.py
+      // care max=0.18, fairness max=0.22, community max=0.24, boundary max=0.28
+      radar: { Care: 22, Fairness: 45, Community: 67, Boundary: 79 },
+      // Haidt MFQ five foundations (0–100)
+      // Grounded in MFQ literature; reviewed against framework descriptions
+      mfq: { Care: 30, Fairness: 45, Loyalty: 70, Authority: 90, Purity: 50 },
+      mfqCallout: `Loads highest on <strong>Authority/Subversion (90)</strong> and moderately on <strong>Loyalty/Betrayal (70)</strong>, with lower Care and Fairness. This is the moral profile of institutional and professional role ethics: you are responsible for doing your role well within legitimate authority structures, and those structures are what make coordinated action possible in the first place. When this framework encounters Individual/Rights-Based reasoning, friction often arises around a fundamental question: must authority justify itself through fairness to everyone, or does authority legitimize itself through its position in the hierarchy?`,
     },
     boundary_integrity: {
       displayName:  'Boundary / Integrity-Centered',
@@ -1155,7 +1363,9 @@
       description:  'Agents protect certain values, rules, or identities as non-negotiable. Crossing those lines is categorically wrong regardless of outcomes. The integrity of the boundary is itself the moral good — compromise is not a lesser evil, it is a betrayal.',
       tags:         ['sacred-boundary', 'integrity', 'containment', 'purity'],
       coreValues:   'Boundary integrity, purity, sacral respect',
-      radar:        { Care: 25, Fairness: 18, Community: 40, Boundary: 95 },
+      radar: { Care: 33, Fairness: 18, Community: 42, Boundary: 100 },
+      mfq: { Care: 35, Fairness: 40, Loyalty: 55, Authority: 65, Purity: 95 },
+      mfqCallout: `Loads highest on <strong>Purity/Sanctity (95)</strong> and moderately on <strong>Authority (65)</strong> and <strong>Loyalty (55)</strong>, with lower Care and Fairness. This is the profile of frameworks built around inviolable limits — things that must not be crossed regardless of consequences. Deontological ethics in its strictest form lives here, as do many religious ethics. When this framework encounters consequentialist or care-based reasoning, the core friction is the difference between "this rule must never be broken" and "we should prevent the worst outcome" — two claims that feel obvious to each framework and mutually unintelligible from the other.`,
     },
     individual_rights: {
       displayName:  'Individual / Rights-Based',
@@ -1164,7 +1374,9 @@
       description:  'Agents prioritize personal autonomy, procedural fairness, and individual rights. They reason from rules that should apply equally to everyone regardless of role or group membership. Think Kant\'s Categorical Imperative: act only on principles you could universalize.',
       tags:         ['autonomy', 'rights', 'procedural-fairness', 'self-authorship'],
       coreValues:   'Autonomy, fairness, self-authorship',
-      radar:        { Care: 45, Fairness: 85, Community: 20, Boundary: 35 },
+      radar: { Care: 67, Fairness: 100, Community: 21, Boundary: 29 },
+      mfq: { Care: 55, Fairness: 90, Loyalty: 25, Authority: 30, Purity: 20 },
+      mfqCallout: `Loads highest on <strong>Fairness/Reciprocity (90)</strong> and moderately on <strong>Care/Harm (55)</strong>, with low Loyalty, Authority, and Purity. This is the signature of Kantian and liberal ethics: everyone deserves equal treatment under a rule that could apply universally, and group membership or hierarchy does not change that calculation. When this framework encounters high-Authority or high-Purity frameworks, friction comes from a foundational disagreement about whether moral rules must be justifiable to every person equally — the rights-based agent says yes, unconditionally.`,
     },
     relational_we: {
       displayName:  'Relational / We-Centered',
@@ -1173,7 +1385,9 @@
       description:  'Agents reason from mutual recognition and communal dignity. Decisions require that everyone\'s voice is genuinely heard. Harm to one damages the whole network. Think care ethics: relationships and context matter more than abstract universal rules.',
       tags:         ['personhood-through-relation', 'restoration', 'mutual-recognition', 'reciprocity'],
       coreValues:   'Relationality, reciprocity, communal dignity',
-      radar:        { Care: 75, Fairness: 55, Community: 90, Boundary: 18 },
+      radar: { Care: 100, Fairness: 27, Community: 100, Boundary: 14 },
+      mfq: { Care: 85, Fairness: 60, Loyalty: 75, Authority: 30, Purity: 25 },
+      mfqCallout: `Loads highest on <strong>Care/Harm (85)</strong> and <strong>Loyalty/Betrayal (75)</strong>, with moderate Fairness (60) and low Authority and Purity. This is the profile of care ethics: the most important moral question is whether people are being hurt and whether relationships of mutual recognition are being honored. Abstract universal rules matter less than the specific needs of specific people in specific relationships. When this framework encounters high-Fairness frameworks, friction often arises around whether context and relationship should modify what equal treatment looks like — care ethics says yes; procedural ethics says that is exactly what fairness must resist.`,
     },
     custodial_stewardship: {
       displayName:  'Custodial / Stewardship',
@@ -1182,7 +1396,9 @@
       description:  'Agents hold obligations to past and future generations, not just to the people currently in the room. They are stewards, not owners. Decisions must account for what was inherited and what will be left behind. Long-term coherence over short-term benefit.',
       tags:         ['custodianship', 'place-continuity', 'ancestral-responsibility', 'stewardship'],
       coreValues:   'Stewardship, ancestor-accountability, boundary integrity',
-      radar:        { Care: 40, Fairness: 25, Community: 65, Boundary: 95 },
+      radar: { Care: 56, Fairness: 27, Community: 67, Boundary: 86 },
+      mfq: { Care: 60, Fairness: 35, Loyalty: 80, Authority: 70, Purity: 75 },
+      mfqCallout: `Loads highest on <strong>Loyalty/Betrayal (80)</strong>, with high <strong>Purity (75)</strong> and <strong>Authority (70)</strong>, and moderate Care (60). This is the moral profile of intergenerational and place-based ethics: you are bound to what was inherited, responsible for what will be passed on, and accountable to communities that extend across time and include the land itself. When this framework encounters Individual/Rights-Based reasoning, the friction is often about whose interests count — the custodial framework includes past and future generations; the rights-based framework focuses on currently-living individuals with claims.`,
     },
   };
 
@@ -1687,12 +1903,21 @@
     document.getElementById('profileValuesA').textContent = `Core values: ${fwA.coreValues}`;
     document.getElementById('profileValuesB').textContent = `Core values: ${fwB.coreValues}`;
 
-    // ── Legend
-    document.getElementById('legendA').textContent = fwA.displayName;
-    document.getElementById('legendB').textContent = fwB.displayName;
+    // ── Chart 1: UCP Coordination Profile (4-axis)
+    document.getElementById('legendA').textContent    = fwA.displayName;
+    document.getElementById('legendB').textContent    = fwB.displayName;
+    drawRadar('combinedRadar', fwA.radar, fwB.radar,
+      ['Care', 'Fairness', 'Community', 'Boundary']);
 
-    // ── Combined Radar
-    drawRadar('combinedRadar', fwA.radar, fwB.radar, fwA.displayName, fwB.displayName);
+    // ── Chart 2: MFQ Foundations Profile (5-axis)
+    document.getElementById('legendMFQA').textContent = fwA.displayName;
+    document.getElementById('legendMFQB').textContent = fwB.displayName;
+    drawRadar('mfqRadar', fwA.mfq, fwB.mfq,
+      ['Care', 'Fairness', 'Loyalty', 'Authority', 'Purity']);
+
+    // ── MFQ Callout cards
+    renderMFQCallout('A', fwA);
+    renderMFQCallout('B', fwB);
 
     // ── Metric rows — now with threshold phrases
     const metricRows = (m) => `
@@ -2013,34 +2238,84 @@
       </div>`;
 
   // ─────────────────────────────────────────────────
-  // RADAR CHART (SVG-based, drawn on canvas)
-  // 4 axes: Care, Fairness, Community, Boundary
-  // Values 0–100
+  // MFQ CALLOUT RENDERER
+  // Builds the mini bar chart + explanatory text for
+  // each framework's moral foundations profile.
   // ─────────────────────────────────────────────────
-  function drawRadar(canvasId, profileA, profileB, nameA, nameB) {
+
+  const MFQ_FOUNDATION_META = {
+    Care:      { label: 'Care / Harm',          cssClass: 'f-care' },
+    Fairness:  { label: 'Fairness / Reciprocity', cssClass: 'f-fairness' },
+    Loyalty:   { label: 'Loyalty / Betrayal',   cssClass: 'f-loyalty' },
+    Authority: { label: 'Authority / Subversion', cssClass: 'f-authority' },
+    Purity:    { label: 'Purity / Sanctity',    cssClass: 'f-purity' },
+  };
+
+  function renderMFQCallout(slot, fw) {
+    // slot is 'A' or 'B'
+    document.getElementById(`calloutTitle${slot}`).textContent = fw.displayName;
+    document.getElementById(`calloutText${slot}`).innerHTML    = fw.mfqCallout;
+
+    const barsEl = document.getElementById(`calloutBars${slot}`);
+    barsEl.innerHTML = Object.entries(fw.mfq)
+      .map(([key, val]) => {
+        const meta = MFQ_FOUNDATION_META[key] || { label: key, cssClass: '' };
+        return `
+          <div class="mfq-bar-row">
+            <span class="mfq-bar-label">${meta.label}</span>
+            <div class="mfq-bar-track">
+              <div class="mfq-bar-fill ${meta.cssClass}"
+                   data-val="${val}" style="width:0%"></div>
+            </div>
+            <span class="mfq-bar-val">${val}</span>
+          </div>`;
+      }).join('');
+
+    // Animate bars after paint
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        barsEl.querySelectorAll('.mfq-bar-fill').forEach(bar => {
+          bar.style.width = `${bar.dataset.val}%`;
+        });
+      }, 80);
+    });
+  }
+
+  // ─────────────────────────────────────────────────
+  // RADAR CHART — generic, handles any number of axes
+  // axes: array of axis name strings (keys in profileA/B)
+  // profileA, profileB: objects keyed by axis name, values 0–100
+  // ─────────────────────────────────────────────────
+  function drawRadar(canvasId, profileA, profileB, axes) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    const cx = W / 2, cy = H / 2;
-    const R = Math.min(W, H) / 2 - 36; // max radius
+
+    const ctx    = canvas.getContext('2d');
+    const W      = canvas.width;
+    const H      = canvas.height;
+    const cx     = W / 2;
+    const cy     = H / 2;
+    const nAxes  = axes.length;
+    // More axes = slightly smaller polygon so labels don't overlap
+    const R      = Math.min(W, H) / 2 - (nAxes > 4 ? 42 : 36);
 
     ctx.clearRect(0, 0, W, H);
 
-    const axes  = ['Care', 'Fairness', 'Community', 'Boundary'];
-    const nAxes = axes.length;
-
-    // Angle for each axis (start at top, go clockwise)
+    // Angle for axis i — start at top (−π/2), go clockwise
     const angle = i => (Math.PI * 2 * i / nAxes) - Math.PI / 2;
 
-    // Point on axis at given value (0-100)
+    // Point on axis i at given value (0–100)
     const pt = (i, val) => {
       const a = angle(i);
       const r = (val / 100) * R;
       return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
     };
 
-    // Draw concentric reference rings
+    // Background fill
+    ctx.fillStyle = '#f8f9fc';
+    ctx.fillRect(0, 0, W, H);
+
+    // Concentric reference rings at 20, 40, 60, 80, 100
     [20, 40, 60, 80, 100].forEach(v => {
       ctx.beginPath();
       for (let i = 0; i < nAxes; i++) {
@@ -2048,52 +2323,76 @@
         i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
       }
       ctx.closePath();
-      ctx.strokeStyle = v === 100 ? '#c0c8d8' : '#e0e5ef';
-      ctx.lineWidth = v === 100 ? 1.5 : 1;
+      ctx.strokeStyle = v === 100 ? '#b8c4d8' : '#dde3ef';
+      ctx.lineWidth   = v === 100 ? 1.5 : 1;
       ctx.stroke();
-      // Ring label at rightmost position
-      const labelPt = pt(1, v); // Fairness axis
+      // Value label on the rightmost axis (index 1 for 4-axis, index 1 for 5-axis)
+      const lp = pt(1, v);
       ctx.fillStyle = '#aab';
-      ctx.font = '9px Courier New';
-      ctx.fillText(v, labelPt.x + 3, labelPt.y + 3);
+      ctx.font      = '9px Courier New';
+      ctx.textAlign = 'left';
+      ctx.fillText(v, lp.x + 3, lp.y + 3);
     });
 
-    // Draw axis lines and labels
-    axes.forEach((axis, i) => {
+    // Axis lines and labels
+    axes.forEach((axisName, i) => {
+      // Axis line from center to edge
       const tip = pt(i, 100);
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(tip.x, tip.y);
       ctx.strokeStyle = '#c8d0e0';
-      ctx.lineWidth = 1;
+      ctx.lineWidth   = 1;
       ctx.stroke();
 
-      // Axis label
-      const lPt = pt(i, 118);
-      ctx.fillStyle = '#445';
-      ctx.font = 'bold 11px Georgia';
-      ctx.textAlign = 'center';
+      // Axis label — positioned just beyond the ring
+      const labelDist = nAxes > 4 ? 114 : 118;
+      const lp = pt(i, labelDist);
+
+      // Two-line labels for 5-axis chart (split on ' / ')
+      const parts = axisName.split(' / ');
+      ctx.fillStyle    = '#334';
+      ctx.font         = 'bold 10px Georgia';
+      ctx.textAlign    = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(axis, lPt.x, lPt.y);
+
+      if (parts.length > 1) {
+        ctx.fillText(parts[0], lp.x, lp.y - 6);
+        ctx.font = '9px Georgia';
+        ctx.fillStyle = '#778';
+        ctx.fillText(parts[1], lp.x, lp.y + 6);
+      } else {
+        ctx.fillText(axisName, lp.x, lp.y);
+      }
     });
 
-    // Draw filled polygon for A
+    // Helper: hex to rgb string
+    const hexToRgb = hex => {
+      const r = parseInt(hex.slice(1,3), 16);
+      const g = parseInt(hex.slice(3,5), 16);
+      const b = parseInt(hex.slice(5,7), 16);
+      return `rgb(${r},${g},${b})`;
+    };
+
+    // Draw filled polygon for one profile
     const drawPoly = (profile, color, alpha) => {
       ctx.beginPath();
-      axes.forEach((axis, i) => {
-        const p = pt(i, profile[axis] || 0);
+      axes.forEach((axisName, i) => {
+        const p = pt(i, profile[axisName] || 0);
         i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
       });
       ctx.closePath();
+      // Fill with transparency
       ctx.fillStyle = color.replace(')', `, ${alpha})`).replace('rgb', 'rgba');
       ctx.fill();
+      // Stroke
       ctx.strokeStyle = color;
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth   = 2.5;
+      ctx.lineJoin    = 'round';
       ctx.stroke();
-
-      // Dots at vertices
-      axes.forEach((axis, i) => {
-        const p = pt(i, profile[axis] || 0);
+      // Vertex dots
+      axes.forEach((axisName, i) => {
+        const p = pt(i, profile[axisName] || 0);
         ctx.beginPath();
         ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
         ctx.fillStyle = color;
@@ -2101,18 +2400,11 @@
       });
     };
 
-    // Helper: convert hex to rgb
-    const hexToRgb = hex => {
-      const r = parseInt(hex.slice(1,3),16);
-      const g = parseInt(hex.slice(3,5),16);
-      const b = parseInt(hex.slice(5,7),16);
-      return `rgb(${r},${g},${b})`;
-    };
-
     drawPoly(profileA, hexToRgb('#4a7fb5'), 0.18);
     drawPoly(profileB, hexToRgb('#c9a84c'), 0.18);
 
-    ctx.textAlign = 'start';
+    // Reset canvas text state
+    ctx.textAlign    = 'start';
     ctx.textBaseline = 'alphabetic';
   }
 
