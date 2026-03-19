@@ -920,6 +920,7 @@
   }
 
 </style>
+<script src="prf-loader.js"></script>
 </head>
 <body>
 
@@ -938,6 +939,37 @@
   <span class="status-dot checking" id="statusDot"></span>
   <span id="statusText">Connecting to UCP engine…</span>
   <span style="margin-left:auto; opacity:.45">backend: ucp-backend-4dig.onrender.com</span>
+</div>
+
+<!-- PRF Profile bar -->
+<div id="prf-bar" style="background:#1e2d4a;border-bottom:1px solid rgba(255,255,255,.08);
+     padding:6px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+  <span style="font-family:'Courier New',monospace;font-size:.7rem;
+               text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4)">
+    PRF Profile
+  </span>
+  <span id="prf-badge-wrap">
+    <span style="font-family:'Courier New',monospace;font-size:.72rem;
+                 color:rgba(255,255,255,.35);font-style:italic">
+      No PRF profile loaded — interpretations are general.
+    </span>
+  </span>
+  <span style="margin-left:auto;display:flex;gap:8px;align-items:center">
+    <label for="prf-file-input-wc" style="padding:4px 12px;background:rgba(255,255,255,.08);
+           border:1px solid rgba(255,255,255,.2);border-radius:4px;cursor:pointer;
+           font-family:'Courier New',monospace;font-size:.68rem;color:rgba(255,255,255,.65);
+           text-transform:uppercase;letter-spacing:.08em">
+      ⬆ Load PRF JSON
+    </label>
+    <input type="file" id="prf-file-input-wc" accept=".json" style="display:none"
+           onchange="loadPRFFile(this)">
+    <button onclick="clearPRFProfile()" id="prf-clear-btn"
+      style="padding:4px 10px;background:transparent;border:1px solid rgba(255,255,255,.15);
+             border-radius:4px;cursor:pointer;font-family:'Courier New',monospace;
+             font-size:.66rem;color:rgba(255,255,255,.4);display:none">
+      ✕ Clear
+    </button>
+  </span>
 </div>
 
 
@@ -1922,19 +1954,19 @@
     // ── Metric rows — now with threshold phrases
     const metricRows = (m) => `
       <div class="comp-metric">
-        <div class="cm-label">λ Raw</div>
+        <div class="cm-label">λ Raw <a href="ucp-metrics-reference.html#lambda-raw" target="_blank" style="font-size:.6rem;color:var(--prf-sky);text-decoration:none;opacity:.7;margin-left:3px">ⓘ</a></div>
         <div class="cm-value ${lambdaClass(m.lambda_raw)}">${m.lambda_raw.toFixed(3)}</div>
         <div class="cm-name">Coordination Capacity</div>
         <div class="cm-threshold">${lambdaRawPhrase(m.lambda_raw)}</div>
       </div>
       <div class="comp-metric">
-        <div class="cm-label">λ Perceived</div>
+        <div class="cm-label">λ Perceived <a href="ucp-metrics-reference.html#lambda-perceived" target="_blank" style="font-size:.6rem;color:var(--prf-sky);text-decoration:none;opacity:.7;margin-left:3px">ⓘ</a></div>
         <div class="cm-value ${lambdaClass(m.lambda_perceived)}">${m.lambda_perceived.toFixed(3)}</div>
         <div class="cm-name">Experienced Coordination</div>
         <div class="cm-threshold">${lambdaPercPhrase(m.lambda_perceived)}</div>
       </div>
       <div class="comp-metric">
-        <div class="cm-label">Friction</div>
+        <div class="cm-label">Friction <a href="ucp-metrics-reference.html#friction" target="_blank" style="font-size:.6rem;color:var(--prf-sky);text-decoration:none;opacity:.7;margin-left:3px">ⓘ</a></div>
         <div class="cm-value ${frictionClass(m.friction)}">${m.friction.toFixed(3)}</div>
         <div class="cm-name">Coordination Cost</div>
         <div class="cm-threshold">${frictionPhrase(m.friction)}</div>
@@ -2062,9 +2094,14 @@
       }
     }
 
-    document.getElementById('interpText').innerHTML = frictionReading;
+    document.getElementById('interpText').innerHTML = frictionReading +
+      (window.UCPProfile && UCPProfile.isLoaded()
+        ? UCPProfile.personalize('friction', { raw: mA.lambda_raw, perceived: mA.lambda_perceived, friction: mA.friction })
+        : '');
 
     // ── Per-framework deep readings (new section E)
+    const _prf = window.UCPProfile && UCPProfile.isLoaded();
+
     const perFwHTML = `
       <div class="fw-result-block">
         <div class="fw-result-header header-a">
@@ -2072,10 +2109,13 @@
         </div>
         <div class="fw-result-body">
           ${buildFwCombinedReading(mA.lambda_raw, mA.lambda_perceived, mA.friction, fwA.displayName)}
+          ${_prf ? UCPProfile.personalize('combined', { raw: mA.lambda_raw, perceived: mA.lambda_perceived, friction: mA.friction }) : ''}
           <div class="fw-suppression-row">
             ${buildFwGapCard(mA.lambda_raw, mA.lambda_perceived, fwA.displayName, '#4a7fb5')}
           </div>
+          ${_prf ? UCPProfile.personalize('gap', { raw: mA.lambda_raw, perceived: mA.lambda_perceived }) : ''}
           ${buildFwVoiceNarrative(mA.lambda_raw, mA.lambda_perceived, mA.friction, fwA.displayName)}
+          ${_prf ? UCPProfile.personalize('voice', { raw: mA.lambda_raw, perceived: mA.lambda_perceived, friction: mA.friction }) : ''}
         </div>
       </div>
 
@@ -2085,10 +2125,13 @@
         </div>
         <div class="fw-result-body">
           ${buildFwCombinedReading(mB.lambda_raw, mB.lambda_perceived, mB.friction, fwB.displayName)}
+          ${_prf ? UCPProfile.personalize('combined', { raw: mB.lambda_raw, perceived: mB.lambda_perceived, friction: mB.friction }) : ''}
           <div class="fw-suppression-row">
             ${buildFwGapCard(mB.lambda_raw, mB.lambda_perceived, fwB.displayName, '#c9a84c')}
           </div>
+          ${_prf ? UCPProfile.personalize('gap', { raw: mB.lambda_raw, perceived: mB.lambda_perceived }) : ''}
           ${buildFwVoiceNarrative(mB.lambda_raw, mB.lambda_perceived, mB.friction, fwB.displayName)}
+          ${_prf ? UCPProfile.personalize('voice', { raw: mB.lambda_raw, perceived: mB.lambda_perceived, friction: mB.friction }) : ''}
         </div>
       </div>
 
@@ -2099,10 +2142,13 @@
         </div>
         <div class="fw-result-body">
           ${buildFwCombinedReading(mM.lambda_raw, mM.lambda_perceived, mM.friction, 'Mixed System')}
+          ${_prf ? UCPProfile.personalize('combined', { raw: mM.lambda_raw, perceived: mM.lambda_perceived, friction: mM.friction }) : ''}
           <div class="fw-suppression-row">
             ${buildFwGapCard(mM.lambda_raw, mM.lambda_perceived, 'Mixed', '#6b7a9a')}
           </div>
+          ${_prf ? UCPProfile.personalize('gap', { raw: mM.lambda_raw, perceived: mM.lambda_perceived }) : ''}
           ${buildFwVoiceNarrative(mM.lambda_raw, mM.lambda_perceived, mM.friction, 'Mixed System')}
+          ${_prf ? UCPProfile.personalize('voice', { raw: mM.lambda_raw, perceived: mM.lambda_perceived, friction: mM.friction }) : ''}
         </div>
       </div>` : ''}
     `;
@@ -2287,6 +2333,45 @@
     ctx.textAlign    = 'start';
     ctx.textBaseline = 'alphabetic';
   }
+
+  // ─────────────────────────────────────────────────
+  // PRF PROFILE HELPERS
+  // ─────────────────────────────────────────────────
+  function loadPRFFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const result = window.UCPProfile ? UCPProfile.load(e.target.result) : { ok: false, error: 'Loader unavailable' };
+      if (result.ok) {
+        document.getElementById('prf-badge-wrap').innerHTML = UCPProfile.getBadgeHTML();
+        document.getElementById('prf-clear-btn').style.display = 'inline-block';
+      } else {
+        document.getElementById('prf-badge-wrap').innerHTML =
+          `<span style="font-family:'Courier New',monospace;font-size:.72rem;color:#c87843">
+            Error: ${result.error}
+           </span>`;
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function clearPRFProfile() {
+    if (window.UCPProfile) UCPProfile.clear();
+    document.getElementById('prf-badge-wrap').innerHTML =
+      `<span style="font-family:'Courier New',monospace;font-size:.72rem;
+               color:rgba(255,255,255,.35);font-style:italic">
+        No PRF profile loaded — interpretations are general.
+       </span>`;
+    document.getElementById('prf-clear-btn').style.display = 'none';
+  }
+
+  (function initPRFBadge() {
+    if (window.UCPProfile && UCPProfile.isLoaded()) {
+      document.getElementById('prf-badge-wrap').innerHTML = UCPProfile.getBadgeHTML();
+      document.getElementById('prf-clear-btn').style.display = 'inline-block';
+    }
+  })();
 
   // ─────────────────────────────────────────────────
   // INIT
